@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh """cd student_files/nodejs  
+                sh """cd /var/lib/jenkins/workspace/ecr/student_file/nodejs
                 docker build --force-rm -t "$ECR_REGISTRY/$APP_REPO_NAME:latest" .
                 docker image ls
                 """
