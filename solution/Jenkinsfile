@@ -4,9 +4,10 @@ pipeline {
     stages {
         stage('terraform infa create') {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/proje208/solution_files'
-                sh 'terraform init'
-                sh 'terraform apply --auto-approve'
+                sh """
+                cd solution
+                terraform init
+                terraform apply --auto-approve"""
             }
         }
        
