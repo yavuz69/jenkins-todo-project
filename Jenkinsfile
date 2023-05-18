@@ -18,7 +18,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh """cd student_files/nodejs  
-                docker build --force-rm -t "$ECR_REGISTRY/$APP_REPO_NAME/nodejs:latest" .
+                docker build --force-rm -t "$ECR_REGISTRY/$APP_REPO_NAME:latest" .
                 docker image ls
                 """
             }
@@ -26,7 +26,7 @@ pipeline {
         stage('Push Image to ECR Repo') {
             steps {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$ECR_REGISTRY"'
-                sh 'docker push "$ECR_REGISTRY/$APP_REPO_NAME/nodejs:latest"'
+                sh 'docker push "$ECR_REGISTRY/$APP_REPO_NAME:latest"'
             }
         }
         stage('wait') {
