@@ -12,7 +12,7 @@ RUN npm install
 
 
 # copy all files into the image
-COPY ./nodejs/server/ .
+COPY ./server/ .
 
 EXPOSE 5000
 
