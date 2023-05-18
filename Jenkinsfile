@@ -7,10 +7,11 @@ pipeline {
     stages {
         stage('Ecr repository create') {
             steps {
-                sh 'aws ecr delete-repository \
-      --repository-name golf/to-do-app \
-      --force \
-      --region us-east-1e'
+                sh 'aws ecr create-repository \
+    --repository-name $APP_REPO_NAME \
+    --image-scanning-configuration scanOnPush=false \
+    --image-tag-mutability IMMUTABLE \
+    --region us-east-1 || true'
                
             }
         }
